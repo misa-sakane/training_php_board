@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="docker/web/css/login.css">
     <title>ログイン|Bullentin board</title>
 </head>
 
@@ -33,7 +33,7 @@
         </div>
 
         <div class="newAccount-button">
-          <a href="creatAccount.php">新規追加はこちら</a>
+          <a href="docker/web/php/creatAccount.php">新規追加はこちら</a>
          </div>
       </from>
     </div>

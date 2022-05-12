@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="../css/login.css">
     <title>新規追加|Bullentin board</title>
 </head>
 

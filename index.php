@@ -9,9 +9,7 @@
     <div class="header-left">
         <div class="header-logo">Bullentin board</div>
     </div>
-    
-
-    <div class="main">
+    <div class="mainArea">
         <h1>Bullentin board</h1>
         <p>ログイン画面</p>
     </div>

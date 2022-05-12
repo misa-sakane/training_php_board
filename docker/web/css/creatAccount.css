@@ -48,10 +48,9 @@
 }
 
 .passward-form input{
-    display:block;
     margin-bottom:3px;
-    
 }
+
 .login-button input {
     background-color: rgb(150, 242, 21);
     width:200px;

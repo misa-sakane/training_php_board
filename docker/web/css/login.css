@@ -1,11 +1,10 @@
 .header-left{
-background-color:#3676ae;
-
+    background-color:#3676ae;
 }
 
 .header-logo{
-color:aliceblue;
-padding: 10px 20px;
+    color:aliceblue;
+    padding: 10px 20px;
 }
 
 .main{
@@ -38,18 +37,17 @@ padding: 10px 20px;
 }
 
 .login-button input {
-background-color: rgb(150, 242, 21);
-width:200px;
-height:45px;
-margin-top:10px;
-margin-bottom: 10px;
-border-radius:10px;
-border:1px solid rgb(55, 55, 55);
-text-align: center;
+    background-color: rgb(150, 242, 21);
+    width:200px;
+    height:45px;
+    margin-top:10px;
+    margin-bottom: 10px;
+    border-radius:10px;
+    border:1px solid rgb(55, 55, 55);
+    text-align: center;
 }
 
 .newAccount-button a {
- color:rgb(55, 55, 55);
-font-size:13px;
-
+    color:rgb(55, 55, 55);
+    font-size:13px;
 }

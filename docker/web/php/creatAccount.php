@@ -1,38 +1,38 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="docker/web/css/login.css">
-    <title>ログイン|Bullentin board</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <title>新規追加|Bullentin board</title>
 </head>
 
 <body>
     <div class="header-left">
         <div class="header-logo">Bullentin board</div>
     </div>
-    <div class="mainArea">
+    
+
+    <div class="main">
         <h1>Bullentin board</h1>
-        <p>ログイン画面</p>
+        <p>新規追加画面</p>
     </div>
 
     <div class="authorization">
      <form method="post" action="login">
         <div class="authorization-form">
-            <h2>ログイン</h2>
+            <h2>新規追加</h2>
             <p>ユーザーIDとパスワードを入力してください。</p>
         </div>
 
         <div class="forms">
             <input type="text" autocomplete="off" placeholder="ユーザーID">
             <input type="text" autocomplete="off" placeholder="パスワード">
+            <input type="text" autocomplete="off" placeholder="パスワード確認">
         </div>
 
         <div class="login-button">
-            <input onclick="location.href='login'" value="ログインする">
+            <input onclick="location.href='login'" value="登録する">
         </div>
 
-        <div class="newAccount-button">
-          <a href="docker/web/php/creatAccount.php">新規追加はこちら</a>
-         </div>
       </from>
     </div>
 

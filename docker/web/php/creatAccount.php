@@ -50,13 +50,10 @@ if (isset($_POST["signUp"])) {
             </div>
 
             <div class="forms">
-                <input type="text" name="userId" maxlength=20 pattern="^[a-zA-Z0-9]+$" autocomplete="off"
-                    placeholder="ユーザーID">
+                <input type="text" name="userId" maxlength=20 autocomplete="off" placeholder="ユーザーID">
                 <div class="passward-form">
-                    <input type="password" name="password" maxlength=30 pattern="^[a-zA-Z0-9]+$" autocomplete="off"
-                        placeholder="パスワード">
-                    <input type="password" name="passwordCheck" maxlength=30 pattern="^[a-zA-Z0-9]+$" autocomplete="off"
-                        placeholder="パスワード確認">
+                    <input type="password" name="password" maxlength=30 autocomplete="off" placeholder="パスワード">
+                    <input type="password" name="passwordCheck" maxlength=30 autocomplete="off" placeholder="パスワード確認">
                 </div>
             </div>
             <div class="login-button">

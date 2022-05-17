@@ -11,7 +11,7 @@ class usersTable
     }
 
     //登録処理
-    public function regist($userId, $password)
+    public function regist($userId, $passwordHash)
     {
         try {
             $dbo = $this->db();
@@ -29,7 +29,7 @@ class usersTable
             $sql = "INSERT INTO users(user_id, password) VALUES (:userId, :password)";
             $stmt = $dbo->prepare($sql);
             $stmt->bindValue(':userId', $userId);
-            $stmt->bindValue(':password', $password);
+            $stmt->bindValue(':password', $passwordHash);
             $stmt->execute();
             header('Location:/');
         } catch (PDOException $e) {

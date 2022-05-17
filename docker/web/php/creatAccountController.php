@@ -13,15 +13,15 @@ class validationUtil
             $errors = $errors . "項目が未入力です。" . '\n';
         }
         //ユーザーIDのバリデーションチェック
-        if (mb_strlen($userId > 20) && !preg_match("^[a-zA-Z0-9]+$", $userId)) {
+        if (mb_strlen($userId > 20) || !preg_match("/^[a-zA-Z0-9]+$/", $userId)) {
             $errors = $errors . "ユーザーIDは半角英数字の20文字以下で入力して下さい。" . '\n';
         }
         //パスワードのバリデーションチェック
-        if (mb_strlen($password) > 20 && !preg_match("^[a-zA-Z0-9]+$", $password)) {
+        if (mb_strlen($password) > 30 || !preg_match("/^[a-zA-Z0-9]+$/", $password)) {
             $errors = $errors . "パスワードは半角英数字の30文字以下で入力して下さい。" . '\n';
         }
         //パスワードチェックのバリデーションチェック
-        if (mb_strlen($passwordCheck) > 30 && !preg_match("^[a-zA-Z0-9]+$", $passwordCheck)) {
+        if (mb_strlen($passwordCheck) > 30 || !preg_match("/^[a-zA-Z0-9]+$/", $passwordCheck)) {
             $errors = $errors . "パスワードチェックは半角英数字の30文字以下で入力して下さい。" . '\n';
         }
         //パスワードとパスワードチェックが一致しているかどうか

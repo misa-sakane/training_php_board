@@ -22,8 +22,8 @@
             </div>
 
             <div class="forms">
-                <input type="text" autocomplete="off" placeholder="ユーザーID">
-                <input type="text" autocomplete="off" placeholder="パスワード">
+                <input type="text" placeholder="ユーザーID">
+                <input type="password" placeholder="パスワード">
             </div>
 
             <div class="login-button">

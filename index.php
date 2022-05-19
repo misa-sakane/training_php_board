@@ -13,27 +13,23 @@
         <h1>Bullentin board</h1>
         <p>ログイン画面</p>
     </div>
-
     <div class="authorization">
         <form method="post" action="login">
             <div class="authorization-form">
                 <h2>ログイン</h2>
                 <p>ユーザーIDとパスワードを入力してください。</p>
             </div>
-
             <div class="forms">
                 <input type="text" placeholder="ユーザーID">
                 <input type="password" placeholder="パスワード">
             </div>
-
             <div class="login-button">
-                <input onclick="location.href='login'" value="ログインする">
+                <input onclick="location.href='docker/web/php/posts.php'" value="ログインする">
             </div>
-
             <div class="newAccount-button">
                 <a href="docker/web/php/creatAccount.php">新規追加はこちら</a>
             </div>
-            </from>
+        </form>
     </div>
 
 </body>

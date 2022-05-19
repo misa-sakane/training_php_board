@@ -10,8 +10,7 @@ class Validation
      * @param string $userId ユーザーID
      * @param string $password パスワード
      * @param string $passwordCheck パスワード確認
-     * @return $errors
-     * 
+     * @return string $errors
      */
 
     public function userRegistValidation($userid, $password, $passwordcheck)

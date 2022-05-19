@@ -47,7 +47,6 @@ if (isset($_POST["signUp"])) {
                 <h2>新規追加</h2>
                 <p>ユーザーIDとパスワードを入力してください。</p>
             </div>
-
             <div class="forms">
                 <input type="text" name="userId" maxlength=20 autocomplete="off" placeholder="ユーザーID">
                 <div class="passward-form">
@@ -58,7 +57,7 @@ if (isset($_POST["signUp"])) {
             <div class="login-button">
                 <input type="submit" name="signUp" value="登録する">
             </div>
-            </from>
+        </form>
     </div>
 </body>
 

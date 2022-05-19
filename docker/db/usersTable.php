@@ -3,7 +3,7 @@ class usersTable
 {
     /**
      * DB接続
-     * @return $dbinfo 
+     * @return mixed $dbinfo 
      */
     public function connectDatabase()
     {
@@ -15,7 +15,7 @@ class usersTable
     }
 
     /**
-     * 新規登録処理
+     * ユーザー情報の新規登録処理
      * 
      * @param string $userid ユーザーID
      * @param string $password パスワード

@@ -11,7 +11,6 @@ class Validation
      * @param string $passwordCheck パスワード確認
      * @return string $errors
      */
-
     public function userRegistValidation($userid, $password, $passwordcheck)
     {
         $errors = "";

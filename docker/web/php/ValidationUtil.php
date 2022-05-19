@@ -22,7 +22,6 @@ class ValidationUtil
      * @param string $value 入力値
      * @param int $max_length 最大文字数
      * @return bool
-     * 
      */
     public static function isMaxLength($value, $max_length)
     {

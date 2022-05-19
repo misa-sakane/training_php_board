@@ -3,7 +3,6 @@ require_once('ValidationUtil.php');
 
 class Validation
 {
-
     /**
      * 新規追加画面のバリデーションチェック
      * 
@@ -29,7 +28,6 @@ class Validation
         if (!ValidationUtil::isHanEisu($password) || !ValidationUtil::isMaxLength($password, 30)) {
             $errors = $errors . "パスワードは半角英数入力30文字以下でしてください。" . '\n';
         }
-
         //パスワード確認の半角英数・文字数制限チェック
         if (!ValidationUtil::isHanEisu($passwordcheck) || !ValidationUtil::isMaxLength($passwordcheck, 30)) {
             $errors = $errors . "パスワード確認は半角英数入力30文字以下でしてください。" . '\n';

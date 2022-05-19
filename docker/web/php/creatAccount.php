@@ -1,22 +1,21 @@
 <?php
-require_once('creatAccountController.php');
+require_once('Validation.php');
 require_once('../../db/usersTable.php');
+
 
 //登録するボタンが押された場合
 if (isset($_POST["signUp"])) {
-    $userId = htmlspecialchars($_POST['userId']);
+    $userid = htmlspecialchars($_POST['userId']);
     $password = $_POST['password'];
-    $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $passwordCheck = $_POST['passwordCheck'];
-    $passwordCheckHash = password_hash($_POST['passwordCheck'], PASSWORD_DEFAULT);
-    $validationCheck = new validationUtil();
-    $errorMessage = $validationCheck->validation($userId, $password, $passwordCheck);
-    if (!empty($errorMessage)) {
-        $alert = "<script type='text/javascript'>alert('$errorMessage');</script>";
+    $passwordcheck = $_POST['passwordCheck'];
+    $validationcheck = new Validation();
+    $errormessage = $validationcheck->userRegistValidation($userid, $password, $passwordcheck);
+    if (!empty($errormessage)) {
+        $alert = "<script type='text/javascript'>alert('$errormessage');</script>";
         echo $alert;
     } else {
-        $registion = new usersTable();
-        $registion->regist($userId, $passwordHash);
+        $registration = new usersTable();
+        $registration->userRegist($userid, $password);
     }
 } ?>
 

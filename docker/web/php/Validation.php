@@ -16,7 +16,7 @@ class Validation
         $errors = "";
 
         //必須項目のチェック
-        if (empty($userid && $password && $passwordcheck)) {
+        if (empty($userid) || empty($password) || empty($passwordcheck)) {
             $errors = $errors . "項目が未入力です。" . '\n';
         }
         //ユーザーIDの半角英数・文字数制限チェック
@@ -34,6 +34,41 @@ class Validation
         //パスワードとパスワード確認の一致チェック
         if ($password != $passwordcheck) {
             $errors = $errors . "パスワードを一致させてください。";
+        }
+        //エラーが１つでもヒットしていたらエラー文表示
+        if (!empty($errors)) {
+            return $errors;
+        }
+    }
+
+    /**
+     * ログイン画面のバリデーションチェック
+     * 
+     * @param string $loginuserId ユーザーID
+     * @param string $loginpassword パスワード
+     * @return string $errors
+     */
+    public function userLoginValidation($loginuserid, $loginpassword)
+    {
+        $errors = "";
+        $dataselect = new usersTable();
+        $selectuserinfo = $dataselect->userLogin($loginuserid);
+
+        //必須項目のチェック
+        if (empty($loginuserid) || empty($loginpassword)) {
+            $errors = $errors . "項目が未入力です。" . '\n';
+        }
+        //ユーザーIDがあるかチェック
+        if (!$selectuserinfo) {
+            $errors = $errors . "ユーザーIDが存在しません。" . '\n';
+        } else {
+            //指定したハッシュがパスワードにマッチしているかチェック
+            if (password_verify($loginpassword,  $selectuserinfo['password'])) {
+                //DBのユーザー情報をセッションに保存
+                $_SESSION['loginId'] =  $selectuserinfo['user_id'];
+            } else {
+                $errors = $errors . "ユーザーIDもしくはパスワードが間違っています。" . '\n';
+            }
         }
         //エラーが１つでもヒットしていたらエラー文表示
         if (!empty($errors)) {

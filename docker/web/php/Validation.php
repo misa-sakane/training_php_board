@@ -16,7 +16,7 @@ class Validation
         $errors = "";
 
         //必須項目のチェック
-        if (empty($userid || $password || $passwordcheck)) {
+        if (empty($userid && $password && $passwordcheck)) {
             $errors = $errors . "項目が未入力です。" . '\n';
         }
         //ユーザーIDの半角英数・文字数制限チェック
@@ -55,18 +55,17 @@ class Validation
         $selectuserinfo = $dataselect->userLogin($loginuserid);
 
         //必須項目のチェック
-        if (empty($loginuserid || $loginpassword)) {
+        if (empty($loginuserid && $loginpassword)) {
             $errors = $errors . "項目が未入力です。" . '\n';
         }
         //ユーザーIDがあるかチェック
         if (!$selectuserinfo) {
-            $errors = $errors . "ユーザーIDもしくはパスワードが間違っています。" . '\n';
+            $errors = $errors . "ユーザーIDが存在しません。" . '\n';
         } else {
             //指定したハッシュがパスワードにマッチしているかチェック
             if (password_verify($loginpassword,  $selectuserinfo['password'])) {
                 //DBのユーザー情報をセッションに保存
                 $_SESSION['loginId'] =  $selectuserinfo['user_id'];
-                $_SESSION['loginPassword'] =  $selectuserinfo['password'];
             } else {
                 $errors = $errors . "ユーザーIDもしくはパスワードが間違っています。" . '\n';
             }

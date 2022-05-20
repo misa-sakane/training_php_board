@@ -58,12 +58,16 @@ class usersTable
      */
     public function userLogin($loginuserId)
     {
-        $dbconnect = $this->connectDatabase();
-        $sql = "SELECT * FROM users WHERE user_id=:userId;";
-        $stmt = $dbconnect->prepare($sql);
-        $stmt->bindValue(':userId', $loginuserId);
-        $stmt->execute();
-        $datainfo = $stmt->fetch();
-        return $datainfo;
+        try {
+            $dbconnect = $this->connectDatabase();
+            $sql = "SELECT * FROM users WHERE user_id=:userId;";
+            $stmt = $dbconnect->prepare($sql);
+            $stmt->bindValue(':userId', $loginuserId);
+            $stmt->execute();
+            $datainfo = $stmt->fetch();
+            return $datainfo;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
     }
 }

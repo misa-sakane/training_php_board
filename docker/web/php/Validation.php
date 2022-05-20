@@ -16,7 +16,7 @@ class Validation
         $errors = "";
 
         //必須項目のチェック
-        if (empty($userid && $password && $passwordcheck)) {
+        if (empty($userid) || empty($password) || empty($passwordcheck)) {
             $errors = $errors . "項目が未入力です。" . '\n';
         }
         //ユーザーIDの半角英数・文字数制限チェック
@@ -55,7 +55,7 @@ class Validation
         $selectuserinfo = $dataselect->userLogin($loginuserid);
 
         //必須項目のチェック
-        if (empty($loginuserid && $loginpassword)) {
+        if (empty($loginuserid) || empty($loginpassword)) {
             $errors = $errors . "項目が未入力です。" . '\n';
         }
         //ユーザーIDがあるかチェック

@@ -4,7 +4,7 @@ require_once('docker/db/usersTable.php');
 
 session_start();
 //ログインボタンが押された場合
-if (isset($_POST["Login"])) {
+if (isset($_POST["login"])) {
     $loginuserid = htmlspecialchars($_POST['loginId']);
     $loginpassword = $_POST['loginPassword'];
     $validationcheck = new Validation();
@@ -43,7 +43,7 @@ if (isset($_POST["Login"])) {
                 <input type="password" name="loginPassword" maxlength=30 placeholder="パスワード">
             </div>
             <div class="login-button">
-                <input type="submit" name="Login" value="ログインする">
+                <input type="submit" name="login" value="ログインする">
             </div>
             <div class="newAccount-button">
                 <a href="docker/web/php/creatAccount.php">新規追加はこちら</a>

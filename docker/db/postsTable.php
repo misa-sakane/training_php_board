@@ -8,7 +8,7 @@ class postsTable
      * 
      * @return mixed $result
      */
-    public function post()
+    public function getPostData()
     {
         $datainfo = new usersTable();
         $dataconnect = $datainfo->connectDatabase();

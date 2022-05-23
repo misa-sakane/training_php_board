@@ -2,7 +2,7 @@
 require_once('../../db/postsTable.php');
 
 $posttable = new postsTable();
-$result = $posttable->post();
+$result = $posttable->getPostData();
 ?>
 
 <!DOCTYPE html>

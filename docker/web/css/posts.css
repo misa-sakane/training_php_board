@@ -32,21 +32,24 @@ header{
 #line1 {
     top: 0;
 }
+
 #line2 {
     top: 14px;
 }
+
 #line3 {
     bottom: 0px;
 }
+
 #menu{
-font-size:5px;
-top:18px;
-display: block;
-position: absolute;
-left: 0;
-width: 30px;
-height: 3px;
-color: #ffffff;
+    font-size:5px;
+    top:18px;
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 30px;
+    height: 3px;
+    color: #ffffff;
 }
 
 .main-area{
@@ -99,6 +102,7 @@ color: #ffffff;
 table td {
 	background: #fff;
 }
+
 table tr:nth-child(odd) td {
     background: #eee;
 }

@@ -22,6 +22,7 @@ $(function(){
             alert('通信失敗');
         })
     }
+    //getPostDataBase関数の呼び出し
     getPostDataBase();
 
 // ハンバーガーメニュー

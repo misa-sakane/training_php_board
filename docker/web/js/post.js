@@ -1,7 +1,10 @@
 $(function(){
-
+    /**
+     *投稿一覧を表示する
+     * 
+     * @return void
+     */
     function getPostDataBase(){
-        console.log('aaa');
         $.ajax({
             type:'POST',
             url:'../php/ajax.php',

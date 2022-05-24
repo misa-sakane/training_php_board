@@ -184,7 +184,6 @@ table tr:nth-child(odd) td {
     width: 750px; 
 }
 
-
 /*モーダル*/
 .post-modal-wrapper {
     position: fixed;
@@ -225,10 +224,9 @@ table tr:nth-child(odd) td {
 }
 
 #post-form p{
-text-align: left;
-padding-left: 30px;
-font-size: 8px;
-
+    text-align: left;
+    padding-left: 30px;
+    font-size: 8px;
 }
 
 #post-form input {

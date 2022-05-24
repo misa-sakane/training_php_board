@@ -19,19 +19,50 @@ $result = $posttable->getPostData();
         <div class="header-left">
             <div class="header-logo">Bullentin board</div>
         </div>
-        <div id="hamburger">
-            <span class="inner_line" id="line1"></span>
-            <span class="inner_line" id="line2"></span>
-            <span class="inner_line" id="line3"></span>
-            <span id="menu">MENU</span>
-        </div>
-        </div>
+        <div id="nav-wrapper" class="nav-wrapper">
+            <div class="hamburger" id="js-hamburger">
+                <span class="inner_line" id="line1"></span>
+                <span class="inner_line" id="line2"></span>
+                <span class="inner_line" id="line3"></span>
+                <span id="menu">MENU</span>
+            </div>
+            <nav class="sp-nav">
+                <ul class="nav-menu">
+                    <li id="add-post">投稿追加</li>
+                    <li id="user-manage">ユーザー管理</li>
+                    <li id="logout">ログアウト</li>
+                </ul>
+            </nav>
+            <div class="black-bg" id="js-black-bg">
+            </div>
     </header>
 
     <div class="main-area">
         <h1>投稿一覧</h1>
         <div class="delete-button">
             <input value="削除">
+        </div>
+
+        <div class="post-modal-wrapper" id="post-modal">
+            <div class="modal">
+                <div id="close-modal">
+                    <i class="fa fa-2x fa-times"></i>
+                </div>
+                <form action="#">
+                    <div id="post-form">
+                        <h2>投稿追加</h2>
+                        <p>投稿タイトル</p>
+                        <input class="form-control" type="text" maxlength=20 placeholder="20文字以内で入力してください">
+                        <p>投稿内容</p>
+                        <div id="form-contents">
+                            <input type="text" maxlength=200>
+                        </div>
+                    </div>
+                    <div id="post-button">
+                        <input type="submit" value="投稿する">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -46,21 +77,12 @@ $result = $posttable->getPostData();
                 <th class="edit">編集</th>
                 <th class="delete">削除</th>
             </tr>
-            <?php foreach ($result as $value) : ?>
-            <tr>
-                <td><input type="checkbox"></td>
-                <td><?php echo $value["seq_no"] ?></td>
-                <td><?php echo $value["user_id"] ?></td>
-                <td><?php echo $value["post_date"] ?></td>
-                <td class='td-contents'><?php echo $value["post_title"] . "<br>" . $value["post_contents"] ?></td>
-                <td><i class="fa-solid fa-pen-to-square"></i>
-                </td>
-                <td>&times;</td>
-            </tr>
-            <?php endforeach; ?>
-
+            <tbody id="post-data">
+            </tbody>
         </table>
     </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="../js/post.js" type="text/javascript"></script>
 </body>
 
 </html>

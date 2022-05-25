@@ -17,6 +17,7 @@ header{
     cursor: pointer;
     transition: 1s;
 }
+
 .inner_line {
     display: block;
     position: absolute;
@@ -98,7 +99,10 @@ header{
     top:35%;
     left: 45%;
     transform: translate(-50%, -50%);
-    list-style-type: none
+    list-style-type: none;
+}
+.nav-menu a{
+    text-decoration: none;
 }
 
 #add-post{
@@ -238,7 +242,7 @@ table tr:nth-child(odd) td {
     border-radius: 5px;
 }
 
-#form-contents input  {
+.form-content input  {
     width: 320px;
     height: 100px;
     font-size: 12px;
@@ -246,6 +250,7 @@ table tr:nth-child(odd) td {
     border: 1px solid #d0d5d8;
     border-radius: 5px;
 }
+
 #post-button input {
     padding: 10px 50px;
     height:45px;

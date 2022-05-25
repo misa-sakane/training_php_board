@@ -1,4 +1,38 @@
 $(function(){
+
+    const btnSubmit = document.getElementById('post-button');
+    /**
+     * 投稿追加モーダルのバリデーションチェック
+     * 
+     * @return void
+     */
+    function postValidaton(){
+        const inputTitle = document.getElementById('form-title');
+        const inputContent = document.getElementById('form-content');
+
+        btnSubmit.addEventListener('click', function(event) {
+            let errors = [];
+            //必須項目のチェック
+                if(inputTitle.value =="" || inputContent.value ==""){
+                errors.push("項目が未入力です。\n");
+                }
+            //投稿タイトルの文字数制限チェック
+                if(inputTitle.value.length>20){
+                errors.push("投稿タイトルを20文字以下で入力してください。\n");
+                }
+            //投稿内容の文字数制限チェック
+                if(inputContent.value.length>200){
+                errors.push("投稿タイトルを200文字以下で入力してください。\n");
+                }
+            //エラーが１つでもヒットしていたらエラー文表示
+                if(errors.length > 0){
+                alert(errors);
+                }
+        });
+    }
+    //postValidaton関数の呼び出し
+    postValidaton();
+
     /**
      *投稿一覧を表示する
      * 

@@ -2,8 +2,6 @@
 $class = $_POST['class'];
 $func = $_POST['func'];
 
-error_log($class);
-
 require_once "../../db/{$class}.php";
 $db = new $class();
 $result = $db->$func();

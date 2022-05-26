@@ -23,7 +23,8 @@ $(function() {
         }
         //エラーが１つでもヒットしていたらエラー文表示
         if (errors.length>0) {
-            return errors;
+            let errormessage = errors.join(""); 
+            return errormessage;
         }
     }
 

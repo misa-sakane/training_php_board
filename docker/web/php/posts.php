@@ -4,8 +4,6 @@ require_once('../../db/postsTable.php');
 $posttable = new postsTable();
 $result = $posttable->getPostData();
 
-session_start();
-
 //ログインをせずに投稿一覧画面を開けないようにするための対処
 if (!isset($_SESSION["loginId"])) {
     header('Location:/');
@@ -18,6 +16,8 @@ if (!isset($_SESSION["loginId"])) {
 <head>
     <link rel="stylesheet" href="../css/posts.css">
     <script src="https://kit.fontawesome.com/e330008995.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="../js/post.js" type="text/javascript"></script>
     <title>投稿一覧|Bullentin board</title>
 </head>
 
@@ -58,13 +58,13 @@ if (!isset($_SESSION["loginId"])) {
                 <div id="post-form">
                     <h2>投稿追加</h2>
                     <p>投稿タイトル</p>
-                    <input id="form-title" id="" name="postTitle" type="text" placeholder="20文字以内で入力してください">
+                    <input id="form-title" name="postTitle" type="text" placeholder="20文字以内で入力してください">
                     <p>投稿内容</p>
                     <div class="form-content">
                         <input id="form-content" type="text" name="postContent" maxlength=200>
                     </div>
                 </div>
-                <div id="post-button">
+                <div class="post-button">
                     <input type="submit" id="post-button" name="postButton" value="投稿する">
                 </div>
             </div>
@@ -86,8 +86,6 @@ if (!isset($_SESSION["loginId"])) {
             </tbody>
         </table>
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="../js/post.js" type="text/javascript"></script>
 </body>
 
 </html>

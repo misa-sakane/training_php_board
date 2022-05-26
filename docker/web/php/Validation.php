@@ -66,6 +66,7 @@ class Validation
             if (password_verify($loginpassword,  $selectuserinfo['password'])) {
                 //DBのユーザー情報をセッションに保存
                 $_SESSION['loginId'] =  $selectuserinfo['user_id'];
+                error_log($_SESSION['loginId']);
             } else {
                 $errors = $errors . "ユーザーIDもしくはパスワードが間違っています。" . '\n';
             }

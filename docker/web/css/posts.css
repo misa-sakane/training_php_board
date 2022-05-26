@@ -251,7 +251,7 @@ table tr:nth-child(odd) td {
     border-radius: 5px;
 }
 
-#post-button input {
+.post-button input {
     padding: 10px 50px;
     height:45px;
     background-color: rgb(150, 242, 21);

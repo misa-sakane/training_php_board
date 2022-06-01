@@ -1,16 +1,16 @@
-header{
-    background-color:#3676ae;
+header {
+    background-color: #3676ae;
 }
 
-.header-logo{
-    color:aliceblue;
+.header-logo {
+    color: aliceblue;
     padding: 10px 20px;
 }
 
 .hamburger {
     display: block;
     position: absolute;
-    top:18px;
+    top: 18px;
     right: 50px;
     width: 30px;
     height: 10px;
@@ -27,12 +27,11 @@ header{
     background-color: #ffffff;
     transition: 1s;
     border-radius: 4px;
-    color:#ffffff;
+    color: #ffffff;
 }
 
 #line1 {
     top: 0px;
-
 }
 
 #line2 {
@@ -50,15 +49,17 @@ header{
     width: 100vw;
     height: 100vh;
     z-index: 5;
-    background-color: #000;
-    opacity: 0;
+    background-color: rgba(0, 0, 0, 0);
+    opacity: 0.1;
     visibility: hidden;
     transition: all 0.5s;
     cursor: pointer;
     z-index: 100;
 }
 
+
 /*ハンバーガーがクリックされたら*/
+
 .open #line1 {
     transform: rotate(-30deg);
     top: 4px;
@@ -80,11 +81,13 @@ header{
 
 .sp-nav {
     position: fixed;
-    right: -100%; /*ハンバーガーがクリックされる前はWindow右側に隠す*/
-    width: 21%; /* 出てくるスライドメニューの幅 */
+    right: -100%;
+    /*ハンバーガーがクリックされる前はWindow右側に隠す*/
+    width: 21%;
+    /* 出てくるスライドメニューの幅 */
     height: 200px;
     background-color: rgba(220, 217, 217, 0.931);
-    color:black;
+    color: black;
     transition: all 0.5s;
     z-index: 200;
 }
@@ -93,34 +96,36 @@ header{
     right: 0;
 }
 
-.nav-menu{
-    font-size:20px;
+.nav-menu {
+    font-size: 20px;
     position: absolute;
-    top:35%;
+    top: 35%;
     left: 45%;
     transform: translate(-50%, -50%);
     list-style-type: none;
 }
-.nav-menu a{
+
+.nav-menu a {
     text-decoration: none;
 }
 
-#add-post{
+#add-post {
     padding-top: 20px;
     border-bottom: 1px solid black;
 }
 
-#user-manage{
+#user-manage {
     padding-top: 20px;
     border-bottom: 1px solid black;
 }
 
-#logout{
+#logout {
     padding-top: 20px;
 }
-#menu{
-    font-size:5px;
-    top:18px;
+
+#menu {
+    font-size: 5px;
+    top: 18px;
     display: block;
     position: absolute;
     left: 0;
@@ -129,70 +134,70 @@ header{
     color: #ffffff;
 }
 
-.main-area{
+.main-area {
     text-align: left;
     margin-top: 40px;
-    margin-left:120px;
-    color:rgb(75, 74, 74);
-    font-weight:bold;
+    margin-left: 120px;
+    color: rgb(75, 74, 74);
+    font-weight: bold;
 }
 
-.main-area h1{
-    margin-bottom:5px;
+.main-area h1 {
+    margin-bottom: 5px;
 }
 
-.delete-button input{
+.delete-button input {
     float: right;
-    margin-top:-45px;
+    margin-top: -45px;
     margin-bottom: 13px;
-    margin-right:120px;
-    background-color:rgb(186, 255, 89);
-    width:100px;
-    height:40px;
-    border-radius:10px;
-    border:1px solid rgb(109, 107, 107);
+    margin-right: 120px;
+    background-color: rgb(186, 255, 89);
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid rgb(109, 107, 107);
     text-align: center;
-    color:rgb(97, 95, 95);
+    color: rgb(97, 95, 95);
 }
 
-.posts-list table{
+.posts-list table {
     width: 1250px;
     text-align: center;
     margin: 0 auto;
     border-collapse: collapse;
-    border:1px solid rgb(97, 95, 95);
+    border: 1px solid rgb(97, 95, 95);
 }
 
-.posts-list .title{
+.posts-list .title {
     height: 50px;
     background-color: #74a5d0;
-    color:rgb(109, 107, 107);
-
+    color: rgb(109, 107, 107);
 }
 
-.posts-list td{
+.posts-list td {
     height: 100px;
-    color:rgb(109, 107, 107);
-    
+    color: rgb(109, 107, 107);
 }
 
 table td {
-	background: #fff;
+    background: #fff;
 }
 
 table tr:nth-child(odd) td {
     background: #eee;
 }
 
-.contents{
-    width: 750px; 
+.contents {
+    width: 750px;
 }
 
+
 /*モーダル*/
+
 .post-modal-wrapper {
     position: fixed;
-    top:0;
-    bottom:0;
+    top: 0;
+    bottom: 0;
     right: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.6);
@@ -220,14 +225,13 @@ table tr:nth-child(odd) td {
     cursor: pointer;
 }
 
-
-#post-form h2{
+#post-form h2 {
     color: #5f5d60;
     letter-spacing: 1px;
     margin-bottom: 40px;
 }
 
-#post-form p{
+#post-form p {
     text-align: left;
     padding-left: 30px;
     font-size: 8px;
@@ -242,7 +246,7 @@ table tr:nth-child(odd) td {
     border-radius: 5px;
 }
 
-.form-content input  {
+.form-content input {
     width: 320px;
     height: 100px;
     font-size: 12px;
@@ -253,13 +257,9 @@ table tr:nth-child(odd) td {
 
 .post-button input {
     padding: 10px 50px;
-    height:45px;
+    height: 45px;
     background-color: rgb(150, 242, 21);
     border-radius: 5px;
     margin: 10px auto;
-    border:1px solid rgb(55, 55, 55);
+    border: 1px solid rgb(55, 55, 55);
 }
-
-
-
-

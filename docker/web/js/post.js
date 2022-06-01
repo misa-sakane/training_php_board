@@ -49,10 +49,12 @@ $(function() {
                 },
             })
             .done(function(data) {
+                nav.classList.toggle('open');
                 $('#post-modal').fadeOut();
-                $('.sp-nav').fadeOut();
                 $('#js-black-bg').fadeOut();
                 getAddPostDataBase();
+                document.getElementById("form-title").value = '';
+                document.getElementById("form-content").value = '';
             })
             .fail(function(data) {
                 alert('通信失敗');
@@ -130,4 +132,5 @@ $(function() {
     $('#close-modal').click(function() {
         $('#post-modal').fadeOut();
     });
+
 });

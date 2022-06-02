@@ -68,4 +68,24 @@ class postsTable
             echo $e->getMessage();
         }
     }
+
+    /**
+     *投稿データ削除
+     * 
+     * @return void
+     */
+    public function deletePostData()
+    {
+        $datainfo = new usersTable();
+        $dataconnect = $datainfo->connectDatabase();
+        try {
+            $delete = $_POST["delete"];
+            $sql = 'delete from posts where seq_no=:number;';
+            $deletedata = $dataconnect->prepare($sql);
+            $deletedata->bindValue(':number', $delete);
+            $deletedata->execute();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 }

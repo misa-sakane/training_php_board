@@ -14,12 +14,12 @@ $(function() {
     /**
      * 投稿追加モーダルのバリデーションチェック
      * 
-     * @return void
+     * @return string | void
      */
     function postValidaton(inputTitle, inputContent) {
         let errors = [];
         //必須項目のチェック
-        if (inputTitle == "" || inputContent == "") {
+        if (inputTitle === "" || inputContent === "") {
             errors.push("項目が未入力です。\n");
         }
         //投稿タイトルの文字数制限チェック

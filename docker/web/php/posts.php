@@ -3,6 +3,11 @@ require_once('../../db/postsTable.php');
 
 $posttable = new postsTable();
 $result = $posttable->getPostData();
+
+//ログインをせずに投稿一覧画面を開けないようにするための対処
+if (!isset($_SESSION["loginId"])) {
+    header('Location:/');
+}
 ?>
 
 <!DOCTYPE html>
@@ -11,6 +16,8 @@ $result = $posttable->getPostData();
 <head>
     <link rel="stylesheet" href="../css/posts.css">
     <script src="https://kit.fontawesome.com/e330008995.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="../js/post.js" type="text/javascript"></script>
     <title>投稿一覧|Bullentin board</title>
 </head>
 
@@ -30,7 +37,7 @@ $result = $posttable->getPostData();
                 <ul class="nav-menu">
                     <li id="add-post">投稿追加</li>
                     <li id="user-manage">ユーザー管理</li>
-                    <li id="logout">ログアウト</li>
+                    <li id="logout" name="logout"><a href="../../db/logout.php">ログアウト</a></li>
                 </ul>
             </nav>
             <div class="black-bg" id="js-black-bg">
@@ -48,20 +55,18 @@ $result = $posttable->getPostData();
                 <div id="close-modal">
                     <i class="fa fa-2x fa-times"></i>
                 </div>
-                <form action="#">
-                    <div id="post-form">
-                        <h2>投稿追加</h2>
-                        <p>投稿タイトル</p>
-                        <input class="form-control" type="text" maxlength=20 placeholder="20文字以内で入力してください">
-                        <p>投稿内容</p>
-                        <div id="form-contents">
-                            <input type="text" maxlength=200>
-                        </div>
+                <div id="post-form">
+                    <h2>投稿追加</h2>
+                    <p>投稿タイトル</p>
+                    <input id="form-title" name="postTitle" type="text" placeholder="20文字以内で入力してください">
+                    <p>投稿内容</p>
+                    <div class="form-content">
+                        <input id="form-content" type="text" name="postContent" maxlength=200>
                     </div>
-                    <div id="post-button">
-                        <input type="submit" value="投稿する">
-                    </div>
-                </form>
+                </div>
+                <div class="post-button">
+                    <input type="submit" id="post-button" name="postButton" value="投稿する">
+                </div>
             </div>
         </div>
     </div>
@@ -81,8 +86,6 @@ $result = $posttable->getPostData();
             </tbody>
         </table>
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="../js/post.js" type="text/javascript"></script>
 </body>
 
 </html>

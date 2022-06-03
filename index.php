@@ -2,7 +2,6 @@
 require_once('docker/web/php/Validation.php');
 require_once('docker/db/usersTable.php');
 
-session_start();
 //ログインボタンが押された場合
 if (isset($_POST["login"])) {
     $loginuserid = htmlspecialchars($_POST['loginId']);

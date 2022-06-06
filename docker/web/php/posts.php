@@ -2,7 +2,7 @@
 require_once('../../db/postsTable.php');
 
 $posttable = new postsTable();
-$result = $posttable->getPostData();
+$result = $posttable->getPostAscSeqNo();
 
 //ログインをせずに投稿一覧画面を開けないようにするための対処
 if (!isset($_SESSION["loginId"])) {
@@ -47,7 +47,7 @@ if (!isset($_SESSION["loginId"])) {
     <div class="main-area">
         <h1>投稿一覧</h1>
         <div class="delete-button">
-            <input value="削除">
+            <input id="delete-btn" value="削除">
         </div>
 
         <div class="post-modal-wrapper" id="post-modal">
@@ -66,6 +66,27 @@ if (!isset($_SESSION["loginId"])) {
                 </div>
                 <div class="post-button">
                     <input type="submit" id="post-button" name="postButton" value="投稿する">
+                </div>
+            </div>
+        </div>
+
+        <div class="post-modal-wrapper" id="post-edit-modal">
+            <div class="modal">
+                <div id="close-modal">
+                    <i class="fa fa-2x fa-times"></i>
+                </div>
+                <div id="post-form">
+                    <h2>投稿編集</h2>
+                    <p>投稿タイトル</p>
+                    <input id="edit-title" name="postTitle" type="text" value="">
+                    <input id="edit-seq_no" type="hidden" value="">
+                    <p>投稿内容</p>
+                    <div class="form-content">
+                        <input id="edit-content" type="text" name="postContent" maxlength=200>
+                    </div>
+                </div>
+                <div class="post-button">
+                    <input type="submit" id="post-edit-button" name="postButton" value="投稿する">
                 </div>
             </div>
         </div>

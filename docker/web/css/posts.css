@@ -160,6 +160,10 @@ header {
     color: rgb(97, 95, 95);
 }
 
+.delete-button input:disabled {
+    opacity: 0.5;
+}
+
 .posts-list table {
     width: 1250px;
     text-align: center;

@@ -12,7 +12,7 @@ $(function() {
     });
 
     /**
-     * 投稿追加モーダルのバリデーションチェック
+     * 投稿のバリデーションチェック
      * 
      * @return string | void
      */
@@ -53,7 +53,7 @@ $(function() {
                 datatype: 'json',
                 data: {
                     'class': 'postsTable',
-                    'func': 'addPostData',
+                    'func': 'insertPost',
                     'postTitle': inputTitle,
                     'postContent': inputContent,
                 },
@@ -62,7 +62,8 @@ $(function() {
                 nav.classList.toggle('open');
                 $('#post-modal').fadeOut();
                 $('#js-black-bg').fadeOut();
-                getAddPostDataBase();
+                $('#post-data').empty();
+                getPostDataBase();
                 document.getElementById("form-title").value = '';
                 document.getElementById("form-content").value = '';
             })
@@ -83,12 +84,22 @@ $(function() {
                 datatype: 'json',
                 data: {
                     'class': 'postsTable',
-                    'func': 'getPostData',
+                    'func': 'getPostAscSeqNo',
                 },
             })
             .done(function(data) {
                 $.each(data, function(key, value) {
-                    $('#post-data').append('<tr><td>' + '<input type="checkbox"></td><td id="seq-no">' + value.seq_no + '</td><td>' + value.user_id + '</td><td>' + value.post_date + '</td><td>' + value.post_title + '<br>' + value.post_contents + '</td><td><i class="fa-solid fa-pen-to-square"></i></td><td class="deletebtn" id=' + value.seq_no + '>&times;</i></td></tr>')
+                    $('#post-data').append('<tr><td id="checks">' +
+                        '<input type="checkbox" id="check" value=' +
+                        value.seq_no + ' class="chk" name="chk-dox"></td><td id="seq-no">' +
+                        value.seq_no + '</td><td>' +
+                        value.user_id + '</td><td>' +
+                        value.post_date + '</td><td id="edit-title-' +
+                        value.seq_no + '">' +
+                        value.post_title + '<br>' + value.post_contents +
+                        '</td><td class="edit-botton" id=' + value.seq_no +
+                        '><i class="fa-solid fa-pen-to-square"></i></td><td class="deletebtn" id=' +
+                        value.seq_no + '>&times;</i></td></tr>')
                 });
             })
             .fail(function(data) {
@@ -98,31 +109,6 @@ $(function() {
     //getPostDataBase関数の呼び出す
     getPostDataBase();
 
-    /**
-     *新しい投稿を表示する
-     * 
-     * @return void
-     */
-    function getAddPostDataBase() {
-        $.ajax({
-                type: 'POST',
-                url: '../php/ajax.php',
-                datatype: 'json',
-                data: {
-                    'class': 'postsTable',
-                    'func': 'getnewPostData',
-                },
-            })
-            .done(function(data) {
-                $.each(data, function(key, value) {
-                    $('#post-data').append('<tr><td>' + '<input type="checkbox"></td><td id="value.seq_no">' + value.seq_no + '</td><td>' + value.user_id + '</td><td>' + value.post_date + '</td><td>' + value.post_title + '<br>' + value.post_contents + '</td><td><i class="fa-solid fa-pen-to-square"></i></td><td class="deletebtn" id=' + value.seq_no + '>&times;</td></tr>')
-                });
-            })
-            .fail(function(data) {
-                alert('通信失敗');
-            })
-    }
-
     //投稿追加を押した時の処理
     $('#add-post').click(function() {
         $('#post-modal').fadeIn();
@@ -131,7 +117,54 @@ $(function() {
         $('#post-modal').fadeOut();
     });
 
-    //削除ボタンを押した後の処理
+    //編集アイコンを押した時の処理
+    $(document).on('click', '.edit-botton', function() {
+        //その列のタイトルと内容を取得
+        const seq = $(this).attr('id');
+        const title = document.getElementById('edit-title-' + seq).innerHTML;
+        const titlesplit = title.split("<br>");
+        document.getElementById('edit-title').value = titlesplit[0];
+        document.getElementById('edit-content').value = titlesplit[1];
+        document.getElementById('edit-seq_no').value = seq;
+        $('#post-edit-modal').fadeIn();
+    });
+    $(document).on('click', '#close-modal', function() {
+        $('#post-edit-modal').fadeOut();
+    });
+
+    //編集モーダルの投稿ボタンを押した後の処理
+    $(document).on('click', '#post-edit-button', function() {
+        const seq_no = document.getElementById('edit-seq_no').value;
+        const inputTitle = document.getElementById('edit-title').value;
+        const inputContent = document.getElementById('edit-content').value;
+        const errors = postValidaton(inputTitle, inputContent);
+        if (errors) {
+            alert(errors);
+            return;
+        }
+        $.ajax({
+                type: 'POST',
+                url: '../php/ajax.php',
+                datatype: 'json',
+                data: {
+                    'class': 'postsTable',
+                    'func': 'updatePost',
+                    'editTitle': inputTitle,
+                    'editContent': inputContent,
+                    'number': seq_no,
+                },
+            })
+            .done(function(data) {
+                $('#post-data').empty();
+                getPostDataBase();
+                $('#post-edit-modal').fadeOut();
+            })
+            .fail(function(data) {
+                alert('通信失敗');
+            })
+    })
+
+    //削除アイコンを押した後の処理
     $(document).on('click', '.deletebtn', function() {
         const number = $(this).attr('id');
         $result = confirm('No.' + number + 'の投稿を削除してよろしいですか？');
@@ -144,7 +177,7 @@ $(function() {
                 datatype: 'json',
                 data: {
                     'class': 'postsTable',
-                    'func': 'deletePostData',
+                    'func': 'deletePost',
                     'delete': number,
                 },
             })
@@ -157,4 +190,48 @@ $(function() {
             })
     })
 
+    //削除ボタンの活性化・非活性化の切り替え
+    $("#delete-btn").prop("disabled", true);
+    $(document).on('change', '.chk', function() {
+        if ($(".chk:checked").length > 0) {
+            // ボタン有効
+            $("#delete-btn").prop("disabled", false);
+        } else {
+            // ボタン無効
+            $("#delete-btn").prop("disabled", true);
+        }
+    });
+
+    //削除ボタンを押した後の処理
+    $("#delete-btn").click(function() {
+        //チェックされた要素のバリューを取得する
+        const arr = [];
+        const check = document.getElementsByClassName('chk');
+        for (let i = 0; i < check.length; i++) {
+            if (check[i].checked) {
+                arr.push(check[i].value);
+            }
+        }
+        $result = confirm('No.' + arr + 'の投稿を削除してよろしいですか？');
+        if ($result == false) {
+            return;
+        }
+        $.ajax({
+                type: 'POST',
+                url: '../php/ajax.php',
+                datatype: 'json',
+                data: {
+                    'class': 'postsTable',
+                    'func': 'multideletePost',
+                    'delete': arr,
+                },
+            })
+            .done(function(data) {
+                $('#post-data').empty();
+                getPostDataBase();
+            })
+            .fail(function(data) {
+                alert('通信失敗');
+            })
+    })
 });

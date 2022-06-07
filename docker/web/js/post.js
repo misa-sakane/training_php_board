@@ -191,16 +191,21 @@ $(function() {
     })
 
     //削除ボタンの活性化・非活性化の切り替え
-    $("#delete-btn").prop("disabled", true);
-    $(document).on('change', '.chk', function() {
-        if ($(".chk:checked").length > 0) {
-            // ボタン有効
-            $("#delete-btn").prop("disabled", false);
-        } else {
-            // ボタン無効
-            $("#delete-btn").prop("disabled", true);
-        }
-    });
+    function changeActive() {
+        $("#delete-btn").prop("disabled", true);
+        $(document).on('change', '.chk', function() {
+            if ($(".chk:checked").length > 0) {
+                // ボタン有効
+                $("#delete-btn").prop("disabled", false);
+            } else {
+                // ボタン無効
+                $("#delete-btn").prop("disabled", true);
+            }
+        });
+    }
+
+    //changeActive関数の呼び出し
+    changeActive();
 
     //削除ボタンを押した後の処理
     $("#delete-btn").click(function() {

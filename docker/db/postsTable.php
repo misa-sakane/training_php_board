@@ -8,7 +8,7 @@ class postsTable
      * 
      * @return mixed $result
      */
-    public function getPostData()
+    public function getPostAscSeqNo()
     {
         $datainfo = new usersTable();
         $dataconnect = $datainfo->connectDatabase();
@@ -24,31 +24,11 @@ class postsTable
     }
 
     /**
-     *新しい投稿データ取得
-     * 
-     * @return mixed $result
-     */
-    public function getnewPostData()
-    {
-        $datainfo = new usersTable();
-        $dataconnect = $datainfo->connectDatabase();
-        try {
-            $sql = 'select * from posts where seq_no=(select max(seq_no) from posts);';
-            $tabledata = $dataconnect->prepare($sql);
-            $tabledata->execute();
-            $result = $tabledata->fetchAll();
-            return $result;
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
-    }
-
-    /**
      *投稿データ登録
      * 
      * @return void
      */
-    public function addPostData()
+    public function insertPost()
     {
         $datainfo = new usersTable();
         $dataconnect = $datainfo->connectDatabase();
@@ -74,7 +54,7 @@ class postsTable
      * 
      * @return void
      */
-    public function deletePostData()
+    public function deletePost()
     {
         $datainfo = new usersTable();
         $dataconnect = $datainfo->connectDatabase();
@@ -84,6 +64,54 @@ class postsTable
             $deletedata = $dataconnect->prepare($sql);
             $deletedata->bindValue(':number', $delete);
             $deletedata->execute();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    /**
+     *投稿データ編集
+     * 
+     * @return void
+     */
+    public function updatePost()
+    {
+        $datainfo = new usersTable();
+        $dataconnect = $datainfo->connectDatabase();
+        try {
+            $edittitle = $_POST['editTitle'];
+            $editcontent = $_POST['editContent'];
+            $date = new DateTime();
+            $currentdate = $date->format('Y/m/d');
+            $number = $_POST["number"];
+            $sql = 'UPDATE posts SET post_title =:edittitle, post_contents=:editcontent ,post_date =:postdate where seq_no =:number;';
+            $editdata = $dataconnect->prepare($sql);
+            $editdata->bindValue(':edittitle', $edittitle);
+            $editdata->bindValue(':editcontent', $editcontent);
+            $editdata->bindValue(':postdate', $currentdate);
+            $editdata->bindValue(':number', $number);
+            $editdata->execute();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    /**
+     *投稿データの一括削除
+     * 
+     * @return void
+     */
+    public function multiDeletePost()
+    {
+        $datainfo = new usersTable();
+        $dataconnect = $datainfo->connectDatabase();
+        try {
+            $sql = 'delete from posts where seq_no=:number;';
+            $deletedata = $dataconnect->prepare($sql);
+            $params = $_POST["delete"];
+            foreach ($params as $value) {
+                $deletedata->execute(array(':number' => $value));
+            }
         } catch (PDOException $e) {
             echo $e->getMessage();
         }

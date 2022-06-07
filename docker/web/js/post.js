@@ -168,7 +168,7 @@ $(function() {
     $(document).on('click', '.deletebtn', function() {
         const number = $(this).attr('id');
         $result = confirm('No.' + number + 'の投稿を削除してよろしいですか？');
-        if ($result == false) {
+        if ($result === false) {
             return;
         }
         $.ajax({
@@ -218,7 +218,7 @@ $(function() {
             }
         }
         $result = confirm('No.' + arr + 'の投稿を削除してよろしいですか？');
-        if ($result == false) {
+        if ($result === false) {
             return;
         }
         $.ajax({

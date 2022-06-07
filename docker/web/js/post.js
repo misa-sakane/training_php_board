@@ -91,7 +91,7 @@ $(function() {
                 $.each(data, function(key, value) {
                     $('#post-data').append('<tr><td id="checks">' +
                         '<input type="checkbox" id="check" value=' +
-                        value.seq_no + ' class="chk" name="chk-dox"></td><td id="seq-no">' +
+                        value.seq_no + ' class="chk"></td><td id="seq-no">' +
                         value.seq_no + '</td><td>' +
                         value.user_id + '</td><td>' +
                         value.post_date + '</td><td id="edit-title-' +
@@ -122,6 +122,7 @@ $(function() {
         //その列のタイトルと内容を取得
         const seq = $(this).attr('id');
         const title = document.getElementById('edit-title-' + seq).innerHTML;
+        alert(title);
         const titlesplit = title.split("<br>");
         document.getElementById('edit-title').value = titlesplit[0];
         document.getElementById('edit-content').value = titlesplit[1];

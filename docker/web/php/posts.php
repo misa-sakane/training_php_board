@@ -36,7 +36,7 @@ if (!isset($_SESSION["loginId"])) {
             <nav class="sp-nav">
                 <ul class="nav-menu">
                     <li id="add-post">投稿追加</li>
-                    <li id="user-manage">ユーザー管理</li>
+                    <li id="user-manage"><a href="user.php">ユーザー管理</a></li>
                     <li id="logout" name="logout"><a href="../../db/logout.php">ログアウト</a></li>
                 </ul>
             </nav>

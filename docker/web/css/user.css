@@ -1,0 +1,267 @@
+header {
+    background-color: #3676ae;
+}
+
+.header-logo {
+    color: aliceblue;
+    padding: 10px 20px;
+}
+
+.hamburger {
+    display: block;
+    position: absolute;
+    top: 18px;
+    right: 50px;
+    width: 30px;
+    height: 10px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.inner_line {
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 30px;
+    height: 3px;
+    background-color: #ffffff;
+    transition: 1s;
+    border-radius: 4px;
+    color: #ffffff;
+}
+
+#line1 {
+    top: 0px;
+}
+
+#line2 {
+    top: 14px;
+}
+
+#line3 {
+    bottom: 0px;
+}
+
+.black-bg {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 5;
+    background-color: rgba(0, 0, 0, 0);
+    opacity: 0.1;
+    visibility: hidden;
+    transition: all 0.5s;
+    cursor: pointer;
+    z-index: 100;
+}
+
+
+/*ハンバーガーがクリックされたら*/
+
+.open #line1 {
+    transform: rotate(-30deg);
+    top: 4px;
+}
+
+.open #line2 {
+    transform: rotate(30deg);
+    top: 4px;
+}
+
+.open #line3 {
+    opacity: 0;
+}
+
+.open .black-bg {
+    opacity: 0.3;
+    visibility: visible;
+}
+
+.sp-nav {
+    position: fixed;
+    right: -100%;
+    /*ハンバーガーがクリックされる前はWindow右側に隠す*/
+    width: 21%;
+    /* 出てくるスライドメニューの幅 */
+    height: 200px;
+    background-color: rgba(220, 217, 217, 0.931);
+    color: black;
+    transition: all 0.5s;
+    z-index: 200;
+}
+
+.open .sp-nav {
+    right: 0;
+}
+
+.nav-menu {
+    font-size: 20px;
+    position: absolute;
+    top: 35%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    list-style-type: none;
+}
+
+.nav-menu a {
+    text-decoration: none;
+}
+
+#post-list {
+    padding-top: 20px;
+    border-bottom: 1px solid black;
+}
+
+#logout {
+    padding-top: 20px;
+}
+
+#menu {
+    font-size: 5px;
+    top: 18px;
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 30px;
+    height: 3px;
+    color: #ffffff;
+}
+
+.main-area {
+    text-align: left;
+    margin-top: 40px;
+    margin-left: 120px;
+    color: rgb(75, 74, 74);
+    font-weight: bold;
+}
+
+.main-area h1 {
+    margin-bottom: 5px;
+}
+
+.delete-button input {
+    float: right;
+    margin-top: -60px;
+    margin-bottom: 13px;
+    margin-right: 120px;
+    background-color: rgb(186, 255, 89);
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid rgb(109, 107, 107);
+    text-align: center;
+    color: rgb(97, 95, 95);
+}
+
+.delete-button input:disabled {
+    opacity: 0.5;
+}
+
+.users-list table {
+    width: 1180px;
+    text-align: center;
+    border-collapse: collapse;
+    border: 1px solid rgb(97, 95, 95);
+}
+
+.users-list .title {
+    height: 50px;
+    background-color: #74a5d0;
+    color: rgb(109, 107, 107);
+}
+
+.users-list td {
+    height: 65px;
+    color: rgb(109, 107, 107);
+}
+
+table td {
+    background: #fff;
+}
+
+table tr:nth-child(odd) td {
+    background: #eee;
+}
+
+.usersId {
+    width: 900px;
+}
+
+.userid {
+    text-align: left;
+    padding-left: 30px;
+}
+
+
+/*モーダル*/
+
+.user-modal-wrapper {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 100;
+    display: none;
+}
+
+.modal {
+    position: absolute;
+    top: 25%;
+    left: 35%;
+    background-color: #e6ecf0;
+    padding: 20px 0 40px;
+    border-radius: 10px;
+    width: 450px;
+    height: auto;
+    text-align: center;
+}
+
+.fa-times {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: rgba(128, 128, 128, 0.46);
+    cursor: pointer;
+}
+
+#user-form h2 {
+    color: #5f5d60;
+    letter-spacing: 1px;
+    margin-bottom: 40px;
+}
+
+#user-form p {
+    text-align: left;
+    padding-left: 30px;
+    font-size: 8px;
+}
+
+#user-form input {
+    width: 320px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    padding: 12px 12px;
+    border: 1px solid #d0d5d8;
+    border-radius: 5px;
+}
+
+#passwordcheck-form {
+    margin-top: -100px;
+}
+
+.update-button input {
+    padding: 10px 50px;
+    height: 45px;
+    background-color: rgb(150, 242, 21);
+    border-radius: 5px;
+    margin: 10px auto;
+    border: 1px solid rgb(55, 55, 55);
+}
+
+.fa {
+    color: black;
+}

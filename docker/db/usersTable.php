@@ -72,4 +72,87 @@ class usersTable
             echo $e->getMessage();
         }
     }
+
+    /**
+     *ユーザー一覧データ取得
+     * 
+     * @return mixed $result
+     */
+    public function getUsserAscSeqNo()
+    {
+        $dataconnect = $this->connectDatabase();
+        try {
+            $sql = 'select * from users order by seq_no asc;';
+            $tabledata = $dataconnect->prepare($sql);
+            $tabledata->execute();
+            $result = $tabledata->fetchAll();
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    /**
+     *ユーザーデータ削除
+     * 
+     * @return void
+     */
+    public function deleteUser()
+    {
+        $dataconnect = $this->connectDatabase();
+        try {
+            $delete = $_POST["delete"];
+            $sql = 'delete from users where seq_no=:number;';
+            $deletedata = $dataconnect->prepare($sql);
+            $deletedata->bindValue(':number', $delete);
+            $deletedata->execute();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    /**
+     *ユーザーデータ編集
+     * 
+     * @return void
+     */
+    public function updateUser()
+    {
+        $dataconnect = $this->connectDatabase();
+        try {
+
+            $edituserid = $_POST['editUserId'];
+            $editpassword = $_POST['editPassword'];
+            $editpasswordhash = password_hash($editpassword, PASSWORD_DEFAULT);
+            $number = $_POST["number"];
+            $sql = 'UPDATE users SET user_id =:edituserid, password=:editpassword  where seq_no =:number;';
+            $editdata = $dataconnect->prepare($sql);
+            $editdata->bindValue(':edituserid', $edituserid);
+            $editdata->bindValue(':editpassword', $editpasswordhash);
+            $editdata->bindValue(':number', $number);
+            $editdata->execute();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    /**
+     *ユーザーデータの一括削除
+     * 
+     * @return void
+     */
+    public function multiDeleteUser()
+    {
+        $dataconnect = $this->connectDatabase();
+        try {
+            $sql = 'delete from users where seq_no=:number;';
+            $deletedata = $dataconnect->prepare($sql);
+            $params = $_POST["delete"];
+            foreach ($params as $value) {
+                $deletedata->execute(array(':number' => $value));
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 }

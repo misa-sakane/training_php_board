@@ -1,8 +1,8 @@
 <?php
-require_once('../../db/postsTable.php');
+require_once('../../db/PostsTable.php');
 
-$posttable = new postsTable();
-$result = $posttable->getPostAscSeqNo();
+$post_table = new PostsTable();
+$result = $post_table->getPostAscSeqNo();
 
 //ログインをせずに投稿一覧画面を開けないようにするための対処
 if (!isset($_SESSION["loginId"])) {
@@ -14,7 +14,7 @@ if (!isset($_SESSION["loginId"])) {
 <html>
 
 <head>
-    <link rel="stylesheet" href="../css/posts.css">
+    <link rel="stylesheet" type="text/css" href="../css/postlist.css">
     <script src="https://kit.fontawesome.com/e330008995.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="../js/post.js" type="text/javascript"></script>
@@ -28,9 +28,9 @@ if (!isset($_SESSION["loginId"])) {
         </div>
         <div id="nav-wrapper" class="nav-wrapper">
             <div class="hamburger" id="js-hamburger">
-                <span class="inner_line" id="line1"></span>
-                <span class="inner_line" id="line2"></span>
-                <span class="inner_line" id="line3"></span>
+                <span class="inner-line" id="line1"></span>
+                <span class="inner-line" id="line2"></span>
+                <span class="inner-line" id="line3"></span>
                 <span id="menu">MENU</span>
             </div>
             <nav class="sp-nav">
@@ -97,7 +97,7 @@ if (!isset($_SESSION["loginId"])) {
             <tr class="title">
                 <th class="checkbox">選択</th>
                 <th class="number">No.</th>
-                <th class="usersId">ユーザーID</th>
+                <th class="users-id">ユーザーID</th>
                 <th class="data">投稿日時</th>
                 <th class="contents">項目（内容）</th>
                 <th class="edit">編集</th>

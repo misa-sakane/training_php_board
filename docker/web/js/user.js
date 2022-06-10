@@ -1,13 +1,13 @@
 $(function() {
     // ハンバーガーメニュー
-    const nav = document.getElementById('nav-wrapper');
-    const hamburger = document.getElementById('js-hamburger');
-    const blackBg = document.getElementById('js-black-bg');
-    hamburger.addEventListener('click', function() {
-        nav.classList.toggle('open');
+    const NAV = document.getElementById('nav-wrapper');
+    const HAMBURGER = document.getElementById('js-hamburger');
+    const BLACK_BG = document.getElementById('js-black-bg');
+    HAMBURGER.addEventListener('click', function() {
+        NAV.classList.toggle('open');
     });
-    blackBg.addEventListener('click', function() {
-        nav.classList.remove('open');
+    BLACK_BG.addEventListener('click', function() {
+        NAV.classList.remove('open');
     });
 
     /**
@@ -21,8 +21,8 @@ $(function() {
                 url: '../php/ajax.php',
                 datatype: 'json',
                 data: {
-                    'class': 'usersTable',
-                    'func': 'getUsserAscSeqNo',
+                    'class': 'UsersTable',
+                    'func': 'getUserAscSeqNo',
                 },
             })
             .done(function(data) {
@@ -33,7 +33,7 @@ $(function() {
                         value.seq_no + '</td><td class="userid"id="edit-userid-' +
                         value.seq_no + '">' +
                         value.user_id + '</td><td class="edit-botton" id=' +
-                        value.seq_no + ' ><i class="fa-solid fa-pen-to-square"></i></td><td class="deletebtn" id=' +
+                        value.seq_no + ' ><i class="fa-solid fa-pen-to-square"></i></td><td class="delete-btn" id=' +
                         value.seq_no + '>&times;</td></tr>')
                 });
             })
@@ -45,9 +45,9 @@ $(function() {
     getUserDataBase();
 
     //削除アイコンを押した後の処理
-    $(document).on('click', '.deletebtn', function() {
-        const number = $(this).attr('id');
-        $result = confirm('No.' + number + 'のユーザーを削除してよろしいですか？');
+    $(document).on('click', '.delete-btn', function() {
+        const NUMBER = $(this).attr('id');
+        $result = confirm('No.' + NUMBER + 'のユーザーを削除してよろしいですか？');
         if ($result === false) {
             return;
         }
@@ -56,9 +56,9 @@ $(function() {
                 url: '../php/ajax.php',
                 datatype: 'json',
                 data: {
-                    'class': 'usersTable',
+                    'class': 'UsersTable',
                     'func': 'deleteUser',
-                    'delete': number,
+                    'delete': NUMBER,
                 },
             })
             .done(function(data) {
@@ -75,26 +75,26 @@ $(function() {
      * 
      * @return string | void
      */
-    function userValidaton(inputUserId, inputPassword, inputPasswordCheck) {
+    function userValidaton(INPUT_USER_ID, INPUT_PASSWORD, INPUT_PASSWORD_CHECK) {
         let errors = [];
         //必須項目のチェック
-        if (inputUserId === "" || inputPassword === "" || inputPasswordCheck === "") {
+        if (INPUT_USER_ID === "" || INPUT_PASSWORD === "" || INPUT_PASSWORD_CHECK === "") {
             errors.push("項目が未入力です。\n");
         }
         //ユーザーIDの半角英数・文字数制限チェック
-        if (inputUserId.length > 20 || !inputUserId.match(/^[A-Za-z0-9]*$/)) {
+        if (INPUT_USER_ID.length > 20 || !INPUT_USER_ID.match(/^[A-Za-z0-9]*$/)) {
             errors.push("ユーザーIDは半角英数入力20文字以下でしてください。\n");
         }
         //パスワードの半角英数・文字数制限チェック
-        if (inputPassword.length > 30 || !inputPassword.match(/^[A-Za-z0-9]*$/)) {
+        if (INPUT_PASSWORD.length > 30 || !INPUT_PASSWORD.match(/^[A-Za-z0-9]*$/)) {
             errors.push("パスワードは半角英数入力30文字以下でしてください。\n");
         }
         //パスワードチェックの半角英数・文字数制限チェック
-        if (inputPasswordCheck.length > 30 || !inputPasswordCheck.match(/^[A-Za-z0-9]*$/)) {
+        if (INPUT_PASSWORD_CHECK.length > 30 || !INPUT_PASSWORD_CHECK.match(/^[A-Za-z0-9]*$/)) {
             errors.push("パスワードチェックは半角英数入力30文字以下でしてください。\n");
         }
         //パスワードとパスワード確認の一致チェック
-        if (inputPassword !== inputPasswordCheck) {
+        if (INPUT_PASSWORD !== INPUT_PASSWORD_CHECK) {
             errors.push("パスワードを一致させてください。\n");
         }
         //エラーが１つでもヒットしていたらエラー文表示
@@ -107,10 +107,10 @@ $(function() {
     //編集アイコンを押した後の処理
     $(document).on('click', '.edit-botton', function() {
         //その列のユーザーIDを取得
-        const seq = $(this).attr('id');
-        const userid = document.getElementById('edit-userid-' + seq).innerHTML;
-        document.getElementById('edit-seq_no').value = seq;
-        document.getElementById('userid-form').value = userid;
+        const SEQ = $(this).attr('id');
+        const USER_ID = document.getElementById('edit-userid-' + SEQ).innerHTML;
+        document.getElementById('edit-seq_no').value = SEQ;
+        document.getElementById('userid-form').value = USER_ID;
         $('#user-edit-modal').fadeIn();
     })
 
@@ -124,13 +124,13 @@ $(function() {
 
     //編集モーダルの変更ボタンを押した後の処理
     $(document).on('click', '#update-user-button', function() {
-        const seq_no = document.getElementById('edit-seq_no').value;
-        const inputUserId = document.getElementById('userid-form').value;
-        const inputPassword = document.getElementById('password-form').value;
-        const inputPasswordCheck = document.getElementById('passwordcheck-form').value;
-        const errors = userValidaton(inputUserId, inputPassword, inputPasswordCheck);
-        if (errors) {
-            alert(errors);
+        const SEQ_NO = document.getElementById('edit-seq_no').value;
+        const INPUT_USER_ID = document.getElementById('userid-form').value;
+        const INPUT_PASSWORD = document.getElementById('password-form').value;
+        const INPUT_PASSWORD_CHECK = document.getElementById('passwordcheck-form').value;
+        const ERRORS = userValidaton(INPUT_USER_ID, INPUT_PASSWORD, INPUT_PASSWORD_CHECK);
+        if (ERRORS) {
+            alert(ERRORS);
             return;
         }
         $.ajax({
@@ -138,11 +138,11 @@ $(function() {
                 url: '../php/ajax.php',
                 datatype: 'json',
                 data: {
-                    'class': 'usersTable',
+                    'class': 'UsersTable',
                     'func': 'updateUser',
-                    'editUserId': inputUserId,
-                    'editpassword': inputPassword,
-                    'number': seq_no,
+                    'editUserId': INPUT_USER_ID,
+                    'editpassword': INPUT_PASSWORD,
+                    'number': SEQ_NO,
                 },
             })
             .done(function(data) {
@@ -178,14 +178,14 @@ $(function() {
     //削除ボタンを押した後の処理
     $("#delete-btn").click(function() {
         //チェックされた要素のバリューを取得する
-        const arr = [];
-        const check = document.getElementsByClassName('chk');
-        for (let i = 0; i < check.length; i++) {
-            if (check[i].checked) {
-                arr.push(check[i].value);
+        const ARR = [];
+        const CHECK = document.getElementsByClassName('chk');
+        for (let i = 0; i < CHECK.length; i++) {
+            if (CHECK[i].checked) {
+                ARR.push(CHECK[i].value);
             }
         }
-        $result = confirm('No.' + arr + 'のユーザーを削除してよろしいですか？');
+        $result = confirm('No.' + ARR + 'のユーザーを削除してよろしいですか？');
         if ($result === false) {
             return;
         }
@@ -194,9 +194,9 @@ $(function() {
                 url: '../php/ajax.php',
                 datatype: 'json',
                 data: {
-                    'class': 'usersTable',
+                    'class': 'UsersTable',
                     'func': 'multiDeleteUser',
-                    'delete': arr,
+                    'delete': ARR,
                 },
             })
             .done(function(data) {

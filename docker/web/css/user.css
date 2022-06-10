@@ -18,7 +18,7 @@ header {
     transition: 1s;
 }
 
-.inner_line {
+.inner-line {
     display: block;
     position: absolute;
     left: 0;
@@ -185,7 +185,7 @@ table tr:nth-child(odd) td {
     background: #eee;
 }
 
-.usersId {
+.users-id {
     width: 900px;
 }
 

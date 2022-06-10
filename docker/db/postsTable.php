@@ -1,7 +1,7 @@
 <?php
-require_once('usersTable.php');
+require_once('DataBaseConnect.php');
 
-class postsTable
+class PostsTable
 {
     /**
      *投稿一覧データ取得
@@ -10,13 +10,13 @@ class postsTable
      */
     public function getPostAscSeqNo()
     {
-        $datainfo = new usersTable();
-        $dataconnect = $datainfo->connectDatabase();
+        $data_base_connect = new DataBaseConnect();
+        $db_connect = $data_base_connect->connectDataBase();
         try {
             $sql = 'select * from posts order by seq_no asc;';
-            $tabledata = $dataconnect->prepare($sql);
-            $tabledata->execute();
-            $result = $tabledata->fetchAll();
+            $table_data = $db_connect->prepare($sql);
+            $table_data->execute();
+            $result = $table_data->fetchAll();
             return $result;
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -30,20 +30,20 @@ class postsTable
      */
     public function insertPost()
     {
-        $datainfo = new usersTable();
-        $dataconnect = $datainfo->connectDatabase();
+        $data_base_connect = new DataBaseConnect();
+        $db_connect = $data_base_connect->connectDataBase();
         try {
             $title = $_POST['postTitle'];
             $content = $_POST['postContent'];
             $date = new DateTime();
-            $currentdate = $date->format('Y/m/d');
+            $current_date = $date->format('Y/m/d');
             $sql = 'INSERT INTO posts (user_id,post_date,post_title,post_contents) values(:loginId,:post_date,:title,:content)';
-            $adddata = $dataconnect->prepare($sql);
-            $adddata->bindValue(':loginId', $_SESSION['loginId']);
-            $adddata->bindValue(':post_date', $currentdate);
-            $adddata->bindValue(':title', $title);
-            $adddata->bindValue(':content', $content);
-            $adddata->execute();
+            $add_data = $db_connect->prepare($sql);
+            $add_data->bindValue(':loginId', $_SESSION['loginId']);
+            $add_data->bindValue(':post_date', $current_date);
+            $add_data->bindValue(':title', $title);
+            $add_data->bindValue(':content', $content);
+            $add_data->execute();
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
@@ -56,14 +56,14 @@ class postsTable
      */
     public function deletePost()
     {
-        $datainfo = new usersTable();
-        $dataconnect = $datainfo->connectDatabase();
+        $data_base_connect = new DataBaseConnect();
+        $db_connect = $data_base_connect->connectDataBase();
         try {
             $delete = $_POST["delete"];
             $sql = 'delete from posts where seq_no=:number;';
-            $deletedata = $dataconnect->prepare($sql);
-            $deletedata->bindValue(':number', $delete);
-            $deletedata->execute();
+            $delete_data = $db_connect->prepare($sql);
+            $delete_data->bindValue(':number', $delete);
+            $delete_data->execute();
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
@@ -76,21 +76,21 @@ class postsTable
      */
     public function updatePost()
     {
-        $datainfo = new usersTable();
-        $dataconnect = $datainfo->connectDatabase();
+        $data_base_connect = new DataBaseConnect();
+        $db_connect = $data_base_connect->connectDataBase();
         try {
-            $edittitle = $_POST['editTitle'];
-            $editcontent = $_POST['editContent'];
+            $edit_title = $_POST['editTitle'];
+            $edit_content = $_POST['editContent'];
             $date = new DateTime();
-            $currentdate = $date->format('Y/m/d');
+            $current_date = $date->format('Y/m/d');
             $number = $_POST["number"];
             $sql = 'UPDATE posts SET post_title =:edittitle, post_contents=:editcontent ,post_date =:postdate where seq_no =:number;';
-            $editdata = $dataconnect->prepare($sql);
-            $editdata->bindValue(':edittitle', $edittitle);
-            $editdata->bindValue(':editcontent', $editcontent);
-            $editdata->bindValue(':postdate', $currentdate);
-            $editdata->bindValue(':number', $number);
-            $editdata->execute();
+            $edit_data = $db_connect->prepare($sql);
+            $edit_data->bindValue(':edittitle', $edit_title);
+            $edit_data->bindValue(':editcontent', $edit_content);
+            $edit_data->bindValue(':postdate', $current_date);
+            $edit_data->bindValue(':number', $number);
+            $edit_data->execute();
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
@@ -103,14 +103,14 @@ class postsTable
      */
     public function multiDeletePost()
     {
-        $datainfo = new usersTable();
-        $dataconnect = $datainfo->connectDatabase();
+        $data_base_connect = new DataBaseConnect();
+        $db_connect = $data_base_connect->connectDataBase();
         try {
             $sql = 'delete from posts where seq_no=:number;';
-            $deletedata = $dataconnect->prepare($sql);
+            $delete_data = $db_connect->prepare($sql);
             $params = $_POST["delete"];
             foreach ($params as $value) {
-                $deletedata->execute(array(':number' => $value));
+                $delete_data->execute(array(':number' => $value));
             }
         } catch (PDOException $e) {
             echo $e->getMessage();

@@ -138,7 +138,7 @@ class PostsTable
     }
 
     /**
-     *投稿日時昇順データ取得
+     *投稿日時降順データ取得
      * 
      * @return mixed $result
      */

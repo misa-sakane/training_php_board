@@ -116,4 +116,44 @@ class PostsTable
             echo $e->getMessage();
         }
     }
+
+    /**
+     *投稿日時昇順データ取得
+     * 
+     * @return mixed $result
+     */
+    public function getPostAscPostDate()
+    {
+        $data_base_connect = new DataBaseConnect();
+        $db_connect = $data_base_connect->connectDataBase();
+        try {
+            $sql = 'select * from posts order by post_date asc;';
+            $table_data = $db_connect->prepare($sql);
+            $table_data->execute();
+            $result = $table_data->fetchAll();
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    /**
+     *投稿日時昇順データ取得
+     * 
+     * @return mixed $result
+     */
+    public function getPostDescPostDate()
+    {
+        $data_base_connect = new DataBaseConnect();
+        $db_connect = $data_base_connect->connectDataBase();
+        try {
+            $sql = 'select * from posts order by post_date desc;';
+            $table_data = $db_connect->prepare($sql);
+            $table_data->execute();
+            $result = $table_data->fetchAll();
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 }

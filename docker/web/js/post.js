@@ -239,4 +239,68 @@ $(function() {
                 alert('通信失敗');
             })
     })
+
+    //昇順ボタンを押した後の処理
+    $("#asc-button").click(function() {
+        $.ajax({
+                type: 'POST',
+                url: '../php/ajax.php',
+                datatype: 'json',
+                data: {
+                    'class': 'PostsTable',
+                    'func': 'getPostAscPostDate',
+                },
+            })
+            .done(function(data) {
+                $('#post-data').empty();
+                $.each(data, function(key, value) {
+                    $('#post-data').append('<tr><td id="checks">' +
+                        '<input type="checkbox" id="check" value=' +
+                        value.seq_no + ' class="chk"></td><td id="seq-no">' +
+                        value.seq_no + '</td><td>' +
+                        value.user_id + '</td><td>' +
+                        value.post_date + '</td><td id="edit-title-' +
+                        value.seq_no + '">' +
+                        value.post_title + '<br>' + value.post_contents +
+                        '</td><td class="edit-botton" id=' + value.seq_no +
+                        '><i class="fa-solid fa-pen-to-square"></i></td><td class="delete-btn" id=' +
+                        value.seq_no + '>&times;</i></td></tr>')
+                });
+            })
+            .fail(function(data) {
+                alert('通信失敗');
+            })
+    })
+
+    //降順ボタンを押した後の処理
+    $("#desc-button").click(function() {
+        $.ajax({
+                type: 'POST',
+                url: '../php/ajax.php',
+                datatype: 'json',
+                data: {
+                    'class': 'PostsTable',
+                    'func': 'getPostDescPostDate',
+                },
+            })
+            .done(function(data) {
+                $('#post-data').empty();
+                $.each(data, function(key, value) {
+                    $('#post-data').append('<tr><td id="checks">' +
+                        '<input type="checkbox" id="check" value=' +
+                        value.seq_no + ' class="chk"></td><td id="seq-no">' +
+                        value.seq_no + '</td><td>' +
+                        value.user_id + '</td><td>' +
+                        value.post_date + '</td><td id="edit-title-' +
+                        value.seq_no + '">' +
+                        value.post_title + '<br>' + value.post_contents +
+                        '</td><td class="edit-botton" id=' + value.seq_no +
+                        '><i class="fa-solid fa-pen-to-square"></i></td><td class="delete-btn" id=' +
+                        value.seq_no + '>&times;</i></td></tr>')
+                });
+            })
+            .fail(function(data) {
+                alert('通信失敗');
+            })
+    })
 });

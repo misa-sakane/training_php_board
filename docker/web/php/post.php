@@ -95,7 +95,10 @@ if (!isset($_SESSION["loginId"])) {
                 <th class="checkbox">選択</th>
                 <th class="number">No.</th>
                 <th class="users-id">ユーザーID</th>
-                <th class="data">投稿日時</th>
+                <th class="date">投稿日時
+                    <button id="asc-button">▲</button>
+                    <button id="desc-button">▼</button>
+                </th>
                 <th class="contents">項目（内容）</th>
                 <th class="edit">編集</th>
                 <th class="delete">削除</th>
@@ -104,6 +107,8 @@ if (!isset($_SESSION["loginId"])) {
             </tbody>
         </table>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js">
+    </script>
 </body>
 
 </html>

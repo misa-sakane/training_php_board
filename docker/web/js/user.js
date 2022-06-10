@@ -1,4 +1,5 @@
 $(function() {
+
     // ハンバーガーメニュー
     const NAV = document.getElementById('nav-wrapper');
     const HAMBURGER = document.getElementById('js-hamburger');

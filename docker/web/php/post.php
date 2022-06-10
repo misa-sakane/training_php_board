@@ -1,9 +1,6 @@
 <?php
-require_once('../../db/PostsTable.php');
 
-$post_table = new PostsTable();
-$result = $post_table->getPostAscSeqNo();
-
+session_start();
 //ログインをせずに投稿一覧画面を開けないようにするための対処
 if (!isset($_SESSION["loginId"])) {
     header('Location:/');
@@ -14,7 +11,7 @@ if (!isset($_SESSION["loginId"])) {
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="../css/postlist.css">
+    <link rel="stylesheet" type="text/css" href="../css/posts.css">
     <script src="https://kit.fontawesome.com/e330008995.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="../js/post.js" type="text/javascript"></script>

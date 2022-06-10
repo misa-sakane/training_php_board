@@ -1,3 +1,12 @@
+<?php
+
+session_start();
+//ログインをせずにユーザー管理画面を開けないようにするための対処
+if (!isset($_SESSION["loginId"])) {
+    header('Location:/');
+}
+?>
+
 <!DOCTYPE html>
 <html>
 

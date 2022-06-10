@@ -1,9 +1,6 @@
 <?php
-require_once('../../db/postsTable.php');
 
-$posttable = new postsTable();
-$result = $posttable->getPostAscSeqNo();
-
+session_start();
 //ログインをせずに投稿一覧画面を開けないようにするための対処
 if (!isset($_SESSION["loginId"])) {
     header('Location:/');
@@ -14,7 +11,7 @@ if (!isset($_SESSION["loginId"])) {
 <html>
 
 <head>
-    <link rel="stylesheet" href="../css/posts.css">
+    <link rel="stylesheet" type="text/css" href="../css/posts.css">
     <script src="https://kit.fontawesome.com/e330008995.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="../js/post.js" type="text/javascript"></script>
@@ -28,9 +25,9 @@ if (!isset($_SESSION["loginId"])) {
         </div>
         <div id="nav-wrapper" class="nav-wrapper">
             <div class="hamburger" id="js-hamburger">
-                <span class="inner_line" id="line1"></span>
-                <span class="inner_line" id="line2"></span>
-                <span class="inner_line" id="line3"></span>
+                <span class="inner-line" id="line1"></span>
+                <span class="inner-line" id="line2"></span>
+                <span class="inner-line" id="line3"></span>
                 <span id="menu">MENU</span>
             </div>
             <nav class="sp-nav">
@@ -97,8 +94,11 @@ if (!isset($_SESSION["loginId"])) {
             <tr class="title">
                 <th class="checkbox">選択</th>
                 <th class="number">No.</th>
-                <th class="usersId">ユーザーID</th>
-                <th class="data">投稿日時</th>
+                <th class="users-id">ユーザーID</th>
+                <th class="date">投稿日時
+                    <button id="asc-button">▲</button>
+                    <button id="desc-button">▼</button>
+                </th>
                 <th class="contents">項目（内容）</th>
                 <th class="edit">編集</th>
                 <th class="delete">削除</th>
@@ -107,6 +107,8 @@ if (!isset($_SESSION["loginId"])) {
             </tbody>
         </table>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js">
+    </script>
 </body>
 
 </html>

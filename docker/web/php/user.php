@@ -1,3 +1,12 @@
+<?php
+
+session_start();
+//ログインをせずにユーザー管理画面を開けないようにするための対処
+if (!isset($_SESSION["loginId"])) {
+    header('Location:/');
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -16,14 +25,14 @@
         </div>
         <div id="nav-wrapper" class="nav-wrapper">
             <div class="hamburger" id="js-hamburger">
-                <span class="inner_line" id="line1"></span>
-                <span class="inner_line" id="line2"></span>
-                <span class="inner_line" id="line3"></span>
+                <span class="inner-line" id="line1"></span>
+                <span class="inner-line" id="line2"></span>
+                <span class="inner-line" id="line3"></span>
                 <span id="menu">MENU</span>
             </div>
             <nav class="sp-nav">
                 <ul class="nav-menu">
-                    <li id="post-list"><a href="posts.php">投稿一覧</a></li>
+                    <li id="post-list"><a href="post.php">投稿一覧</a></li>
                     <li id="logout" name="logout"><a href="../../db/logout.php">ログアウト</a></li>
                 </ul>
             </nav>
@@ -65,7 +74,7 @@
                 <tr class="title">
                     <th class="checkbox">選択</th>
                     <th class="number">No.</th>
-                    <th class="usersId">ユーザーID</th>
+                    <th class="users-id">ユーザーID</th>
                     <th class="edit">編集</th>
                     <th class="delete">削除</th>
                 </tr>

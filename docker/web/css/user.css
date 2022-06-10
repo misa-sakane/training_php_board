@@ -18,7 +18,7 @@ header {
     transition: 1s;
 }
 
-.inner_line {
+.inner-line {
     display: block;
     position: absolute;
     left: 0;
@@ -110,12 +110,25 @@ header {
 }
 
 #post-list {
-    padding-top: 20px;
+    padding-top: 15px;
     border-bottom: 1px solid black;
+    width: 200px;
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+#post-list a {
+    color: #3676ae;
 }
 
 #logout {
-    padding-top: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+#logout a {
+    color: #3676ae;
 }
 
 #menu {
@@ -153,6 +166,7 @@ header {
     border: 1px solid rgb(109, 107, 107);
     text-align: center;
     color: rgb(97, 95, 95);
+    cursor: pointer;
 }
 
 .delete-button input:disabled {
@@ -185,13 +199,21 @@ table tr:nth-child(odd) td {
     background: #eee;
 }
 
-.usersId {
+.users-id {
     width: 900px;
 }
 
 .userid {
     text-align: left;
     padding-left: 30px;
+}
+
+.delete-btn {
+    cursor: pointer;
+}
+
+.edit-botton {
+    cursor: pointer;
 }
 
 
@@ -260,6 +282,7 @@ table tr:nth-child(odd) td {
     border-radius: 5px;
     margin: 10px auto;
     border: 1px solid rgb(55, 55, 55);
+    cursor: pointer;
 }
 
 .fa {

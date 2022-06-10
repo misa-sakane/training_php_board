@@ -18,7 +18,7 @@ header {
     transition: 1s;
 }
 
-.inner_line {
+.inner-line {
     display: block;
     position: absolute;
     left: 0;
@@ -110,17 +110,33 @@ header {
 }
 
 #add-post {
-    padding-top: 20px;
+    padding-top: 15px;
     border-bottom: 1px solid black;
+    cursor: pointer;
+    color: #3676ae;
+    text-align: center;
+    padding-bottom: 15px;
+    width: 200px;
 }
 
 #user-manage {
-    padding-top: 20px;
+    padding-top: 15px;
     border-bottom: 1px solid black;
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+#user-manage a {
+    color: #3676ae;
 }
 
 #logout {
-    padding-top: 20px;
+    padding-top: 15px;
+    text-align: center;
+}
+
+#logout a {
+    color: #3676ae;
 }
 
 #menu {
@@ -158,6 +174,7 @@ header {
     border: 1px solid rgb(109, 107, 107);
     text-align: center;
     color: rgb(97, 95, 95);
+    cursor: pointer;
 }
 
 .delete-button input:disabled {
@@ -193,6 +210,14 @@ table tr:nth-child(odd) td {
 
 .contents {
     width: 750px;
+}
+
+.delete-btn {
+    cursor: pointer;
+}
+
+.edit-botton {
+    cursor: pointer;
 }
 
 
@@ -235,6 +260,10 @@ table tr:nth-child(odd) td {
     margin-bottom: 40px;
 }
 
+.post-add {
+    cursor: pointer;
+}
+
 #post-form p {
     text-align: left;
     padding-left: 30px;
@@ -266,6 +295,7 @@ table tr:nth-child(odd) td {
     border-radius: 5px;
     margin: 10px auto;
     border: 1px solid rgb(55, 55, 55);
+    cursor: pointer;
 }
 
 .fa {

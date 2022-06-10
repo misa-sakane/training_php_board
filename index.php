@@ -1,18 +1,18 @@
 <?php
 require_once('docker/web/php/Validation.php');
-require_once('docker/db/usersTable.php');
+require_once('docker/db/UsersTable.php');
 
 //ログインボタンが押された場合
 if (isset($_POST["login"])) {
-    $loginuserid = htmlspecialchars($_POST['loginId']);
-    $loginpassword = $_POST['loginPassword'];
-    $validationcheck = new Validation();
-    $loginerrormessage = $validationcheck->userLoginValidation($loginuserid, $loginpassword);
-    if (!empty($loginerrormessage)) {
-        $alert = "<script type='text/javascript'>alert('$loginerrormessage');</script>";
+    $login_user_id = htmlspecialchars($_POST['loginId']);
+    $login_password = $_POST['loginPassword'];
+    $validation_check = new Validation();
+    $login_error_message = $validation_check->userLoginValidation($login_user_id, $login_password);
+    if (!empty($login_error_message)) {
+        $alert = "<script type='text/javascript'>alert('$login_error_message');</script>";
         echo $alert;
     } else {
-        header('Location:docker/web/php/posts.php');
+        header('Location:docker/web/php/post.php');
     }
 } ?>
 
@@ -45,7 +45,7 @@ if (isset($_POST["login"])) {
                 <input type="submit" name="login" value="ログインする">
             </div>
             <div class="newAccount-button">
-                <a href="docker/web/php/creatAccount.php">新規追加はこちら</a>
+                <a href="docker/web/php/creataccount.php">新規追加はこちら</a>
             </div>
         </form>
     </div>

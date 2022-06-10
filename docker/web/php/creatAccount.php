@@ -1,21 +1,21 @@
 <?php
 require_once('Validation.php');
-require_once('../../db/usersTable.php');
+require_once('../../db/UsersTable.php');
 
 
 //登録するボタンが押された場合
 if (isset($_POST["signUp"])) {
-    $userid = htmlspecialchars($_POST['userId']);
+    $user_id = htmlspecialchars($_POST['userId']);
     $password = $_POST['password'];
-    $passwordcheck = $_POST['passwordCheck'];
-    $validationcheck = new Validation();
-    $errormessage = $validationcheck->userRegistValidation($userid, $password, $passwordcheck);
-    if (!empty($errormessage)) {
-        $alert = "<script type='text/javascript'>alert('$errormessage');</script>";
+    $password_check = $_POST['passwordCheck'];
+    $validation_check = new Validation();
+    $error_message = $validation_check->userRegistValidation($user_id, $password, $password_check);
+    if (!empty($error_message)) {
+        $alert = "<script type='text/javascript'>alert('$error_message');</script>";
         echo $alert;
     } else {
-        $registration = new usersTable();
-        $registration->userRegist($userid, $password);
+        $registration = new UsersTable();
+        $registration->insertUser($user_id, $password);
     }
 } ?>
 
@@ -23,7 +23,7 @@ if (isset($_POST["signUp"])) {
 <html>
 
 <head>
-    <link rel="stylesheet" href="../css/creatAccount.css">
+    <link rel="stylesheet" href="../css/creataccount.css">
     <title>新規追加|Bullentin board</title>
 </head>
 
